@@ -39,7 +39,10 @@ class DuckDuckGoPresenter : DuckDuckGoContract.Presenter {
         view.searchViewLiveData().removeObserver(searchViewObserver)
     }
 
-    override fun onDestroy() = view.searchViewLiveData().removeObserver(searchViewObserver)
+    override fun onDestroy() {
+        view.searchViewLiveData().removeObserver(searchViewObserver)
+        compositeDisposable.dispose()
+    }
 
     override fun attach(view: DuckDuckGoContract.View) = apply {
         this.view = view
